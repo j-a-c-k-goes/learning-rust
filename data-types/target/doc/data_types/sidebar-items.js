@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["array_types",""],["boolean_types",""],["character_types",""],["compound_types",""],["data_types",""],["floating_point_types",""],["integers",""],["main",""],["new_line",""],["operator_types",""],["scalar_types",""],["signed_integers",""],["tuple_types",""],["unsigned_integers",""]]});

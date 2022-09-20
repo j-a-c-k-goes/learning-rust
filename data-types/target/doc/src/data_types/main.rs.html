@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../data_types/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<span id="2">  2</span>
+<span id="3">  3</span>
+<span id="4">  4</span>
+<span id="5">  5</span>
+<span id="6">  6</span>
+<span id="7">  7</span>
+<span id="8">  8</span>
+<span id="9">  9</span>
+<span id="10"> 10</span>
+<span id="11"> 11</span>
+<span id="12"> 12</span>
+<span id="13"> 13</span>
+<span id="14"> 14</span>
+<span id="15"> 15</span>
+<span id="16"> 16</span>
+<span id="17"> 17</span>
+<span id="18"> 18</span>
+<span id="19"> 19</span>
+<span id="20"> 20</span>
+<span id="21"> 21</span>
+<span id="22"> 22</span>
+<span id="23"> 23</span>
+<span id="24"> 24</span>
+<span id="25"> 25</span>
+<span id="26"> 26</span>
+<span id="27"> 27</span>
+<span id="28"> 28</span>
+<span id="29"> 29</span>
+<span id="30"> 30</span>
+<span id="31"> 31</span>
+<span id="32"> 32</span>
+<span id="33"> 33</span>
+<span id="34"> 34</span>
+<span id="35"> 35</span>
+<span id="36"> 36</span>
+<span id="37"> 37</span>
+<span id="38"> 38</span>
+<span id="39"> 39</span>
+<span id="40"> 40</span>
+<span id="41"> 41</span>
+<span id="42"> 42</span>
+<span id="43"> 43</span>
+<span id="44"> 44</span>
+<span id="45"> 45</span>
+<span id="46"> 46</span>
+<span id="47"> 47</span>
+<span id="48"> 48</span>
+<span id="49"> 49</span>
+<span id="50"> 50</span>
+<span id="51"> 51</span>
+<span id="52"> 52</span>
+<span id="53"> 53</span>
+<span id="54"> 54</span>
+<span id="55"> 55</span>
+<span id="56"> 56</span>
+<span id="57"> 57</span>
+<span id="58"> 58</span>
+<span id="59"> 59</span>
+<span id="60"> 60</span>
+<span id="61"> 61</span>
+<span id="62"> 62</span>
+<span id="63"> 63</span>
+<span id="64"> 64</span>
+<span id="65"> 65</span>
+<span id="66"> 66</span>
+<span id="67"> 67</span>
+<span id="68"> 68</span>
+<span id="69"> 69</span>
+<span id="70"> 70</span>
+<span id="71"> 71</span>
+<span id="72"> 72</span>
+<span id="73"> 73</span>
+<span id="74"> 74</span>
+<span id="75"> 75</span>
+<span id="76"> 76</span>
+<span id="77"> 77</span>
+<span id="78"> 78</span>
+<span id="79"> 79</span>
+<span id="80"> 80</span>
+<span id="81"> 81</span>
+<span id="82"> 82</span>
+<span id="83"> 83</span>
+<span id="84"> 84</span>
+<span id="85"> 85</span>
+<span id="86"> 86</span>
+<span id="87"> 87</span>
+<span id="88"> 88</span>
+<span id="89"> 89</span>
+<span id="90"> 90</span>
+<span id="91"> 91</span>
+<span id="92"> 92</span>
+<span id="93"> 93</span>
+<span id="94"> 94</span>
+<span id="95"> 95</span>
+<span id="96"> 96</span>
+<span id="97"> 97</span>
+<span id="98"> 98</span>
+<span id="99"> 99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+</pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">data_types</span>();
+    <span class="ident">scalar_types</span>();
+    <span class="ident">operator_types</span>();
+    <span class="ident">boolean_types</span>();
+    <span class="ident">character_types</span>();
+    <span class="ident">compound_types</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">new_line</span>() {
+    <span class="macro">println!</span>(<span class="string">&quot;\n&quot;</span>);
+}
+
+<span class="kw">fn</span> <span class="ident">data_types</span>() {
+    <span class="macro">println!</span>(<span class="string">&quot;DATA TYPES&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--every value in Rust is a data type.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--this tells Rust what kind of data is being specified.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--Rust is static (or omnipotent); @ compile time, compiler must know the types of all variables.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--example: let guess: u32 = \&quot;42\&quot;.parse().expect(\&quot;not a number!\&quot;)&quot;</span>);
+    <span class="ident">new_line</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">scalar_types</span>() {
+    <span class="macro">println!</span>(<span class="string">&quot;SCALAR TYPES&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--scalars represent a single value (values are what \&quot;scales\&quot; a program.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--examples: integers, floating-point numbers, Booleans and characters.&quot;</span>);
+    <span class="ident">new_line</span>();
+    <span class="ident">integers</span>();
+    <span class="ident">floating_point_types</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">integers</span>() {
+    <span class="macro">println!</span>(<span class="string">&quot;INTEGERS&quot;</span>);
+    <span class="ident">signed_integers</span>();
+    <span class="ident">unsigned_integers</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">unsigned_integers</span>() {
+    <span class="kw">let</span> <span class="ident">x</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">32</span>;
+    <span class="kw">let</span> <span class="ident">y</span>: <span class="ident">u16</span> <span class="op">=</span> (<span class="ident">x</span> <span class="op">*</span> <span class="number">2</span>).<span class="ident">into</span>(); <span class="comment">// when changing bit values, use into() method</span>
+    <span class="kw">let</span> <span class="ident">z</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">100_000_000</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;\t\tUNSIGNED INTEGERS&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--annotation types for unsigned integers: u8, u16, u32, u64, u128, usize&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--usize reflects the architecture of your computer (32 bit or 64 bit)&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--declared let a: u8 = 32, the signed 8bit integer is: {}&quot;</span>, <span class="ident">x</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--declared let b: u16 = (x * 2), the signed 16bit integer is: {}&quot;</span>, <span class="ident">y</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--declared let c: usize = 100_000_00, the signed isize integer is: {}&quot;</span>, <span class="ident">z</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--when shadowing a smaller bit value to declare larger bit value (think: 16bit value derived from 8bit value), use the .into() method&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--let y: u16 = (x * 2).into();&quot;</span>);
+    <span class="ident">new_line</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">signed_integers</span>() {
+    <span class="kw">let</span> <span class="ident">a</span>: <span class="ident">i8</span> <span class="op">=</span> <span class="op">-</span><span class="number">32</span>;
+    <span class="kw">let</span> <span class="ident">b</span>: <span class="ident">i16</span> <span class="op">=</span> (<span class="ident">a</span> <span class="op">*</span> <span class="op">-</span><span class="number">3</span>).<span class="ident">into</span>(); <span class="comment">// when changing bit values, use into() method</span>
+    <span class="kw">let</span> <span class="ident">c</span>: <span class="ident">isize</span> <span class="op">=</span> <span class="op">-</span><span class="number">100_000_000</span>; <span class="comment">//</span>
+    <span class="macro">println!</span>(<span class="string">&quot;\t\tSIGNED INTEGERS&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--annotation types for signed integers: i8, i16, i32, i64, i128, isize&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--isize reflects the architecture of your computer (32 bit or 64 bit)&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--declared as: let a: i8 = -32, the signed 8bit integer is: {}&quot;</span>,<span class="ident">a</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--declared as: let b: i16 = (a * -3).into(), the signed 16bit integer is: {}&quot;</span>, <span class="ident">b</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--declared as: let c: isize = -100_000_00, the signed isize integer is: {}&quot;</span>, <span class="ident">c</span>);
+    <span class="ident">new_line</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">floating_point_types</span>() {
+    <span class="kw">let</span> <span class="ident">x</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">2.3</span>; <span class="comment">// f64</span>
+    <span class="kw">let</span> <span class="ident">y</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">3.1</span>; <span class="comment">// f32, using annotation</span>
+    <span class="macro">println!</span>(<span class="string">&quot;FLOATING POINT TYPES&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--Rust has two primitive types for floating-point numbers (numbers with decimal points).&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--primitives are: f32 and f64, 32bit floating points and 64bit floating point, respectively.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--example: let x: f64 = {}&quot;</span>, <span class="ident">x</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--example: let y: f32 = {}&quot;</span>, <span class="ident">y</span>);
+    <span class="ident">new_line</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">operator_types</span>() {
+    <span class="macro">println!</span>(<span class="string">&quot;***** omitting operator b/c familiar with +, -, /, *, % *****&quot;</span>);
+    <span class="ident">new_line</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">boolean_types</span>() {
+    <span class="kw">let</span> <span class="ident">t</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
+    <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>; <span class="comment">// explicit type annotation</span>
+    <span class="macro">println!</span>(<span class="string">&quot;BOOLEAN TYPES&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--booleans are true or false values.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--mainly used in conditionals like if expressions.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--example: i want to build projects: {}!&quot;</span>, <span class="ident">t</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--boolean declared as: let f: bool = {}&quot;</span>, <span class="ident">f</span>);
+    <span class="ident">new_line</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">character_types</span>() {
+    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="string">&#39;z&#39;</span>;
+    <span class="kw">let</span> <span class="ident">e</span>: <span class="ident">char</span> <span class="op">=</span> <span class="string">&#39;@&#39;</span>;
+    <span class="kw">let</span> <span class="ident">emoji</span>: <span class="ident">char</span> <span class="op">=</span> <span class="string">&#39;🧩&#39;</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;CHARACTER TYPES&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--in Rust (like in Java), \&quot;char\&quot; is the most primitive alphabetic type.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--char literals are always specified with single quotes.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--char declared as: let c = &#39;z&#39;&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--alphabet as character: {}&quot;</span>, <span class="ident">c</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--symbol as character: {}&quot;</span>, <span class="ident">e</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--emoji as character: {}&quot;</span>, <span class="ident">emoji</span>);
+    <span class="ident">new_line</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">compound_types</span>() {
+    <span class="macro">println!</span>(<span class="string">&quot;COMPOUND TYPES&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--compound types can group multiple values into one type.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--the two primitives here are: TUPLES and ARRAYS.&quot;</span>);
+    <span class="ident">new_line</span>();
+    <span class="ident">tuple_types</span>();
+    <span class="ident">array_types</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">tuple_types</span>() {
+    <span class="kw">let</span> <span class="ident">tup</span>: (<span class="ident">i32</span>, <span class="ident">f64</span>, <span class="ident">u8</span>) <span class="op">=</span> (<span class="number">500</span>, <span class="number">6.4</span>, <span class="number">1</span>); <span class="comment">// unsigned 32 bit value, floating point 64 bit value, and utf8 value</span>
+    <span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">z</span>) <span class="op">=</span> <span class="ident">tup</span>;
+    <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">tup</span>.<span class="number">0</span>; <span class="comment">// first element</span>
+    <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">tup</span>.<span class="number">1</span>; <span class="comment">// second element</span>
+    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">tup</span>.<span class="number">2</span>; <span class="comment">// third element</span>
+    <span class="macro">println!</span>(<span class="string">&quot;\t\tTUPLE TYPES&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--tuples are general ways of grouping togther a set of values of various types&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--tuples are fixed sets; once set, a tuple cannot grow or shrink in size (number of elements&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--tuple declared as let tup: (i32, f64, u8) = (500,6.4,1)&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--to get individual values from a tuple, use pattern matching to destructure the tuple&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--pattern mathching declared as: &#39;(x,y,z) = tup&#39;&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--in addition to destructuring, tuples use a \&quot;.\&quot; notation to access the index of a value&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--tuple dot notation: tup.0 is {}, tup.1 is {}, tup.2 {}&quot;</span>,<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">c</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\tx is: {}\ty is: {}\tz is {}&quot;</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">z</span>);
+    <span class="ident">new_line</span>();
+}
+
+<span class="kw">fn</span> <span class="ident">array_types</span>() {
+    <span class="kw">let</span> <span class="ident">a</span>: [<span class="ident">i32</span>; <span class="number">3</span>] <span class="op">=</span> [<span class="number">300_000</span>, <span class="number">140_000</span>, <span class="number">50_000</span>];
+    <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> [<span class="number">3</span>;<span class="number">5</span>]; <span class="comment">// an array of five lements all with identical values</span>
+    <span class="kw">let</span> <span class="ident">alphabets</span>: [<span class="ident">char</span>; <span class="number">26</span>] <span class="op">=</span> [<span class="string">&#39;a&#39;</span>,<span class="string">&#39;b&#39;</span>,<span class="string">&#39;c&#39;</span>,<span class="string">&#39;d&#39;</span>,<span class="string">&#39;e&#39;</span>,<span class="string">&#39;f&#39;</span>,<span class="string">&#39;g&#39;</span>,<span class="string">&#39;h&#39;</span>,<span class="string">&#39;i&#39;</span>,<span class="string">&#39;j&#39;</span>,<span class="string">&#39;k&#39;</span>,<span class="string">&#39;l&#39;</span>,<span class="string">&#39;m&#39;</span>,<span class="string">&#39;n&#39;</span>,<span class="string">&#39;o&#39;</span>,<span class="string">&#39;p&#39;</span>,<span class="string">&#39;q&#39;</span>,<span class="string">&#39;r&#39;</span>,<span class="string">&#39;s&#39;</span>,<span class="string">&#39;t&#39;</span>,<span class="string">&#39;u&#39;</span>,<span class="string">&#39;v&#39;</span>,<span class="string">&#39;w&#39;</span>,<span class="string">&#39;x&#39;</span>,<span class="string">&#39;y&#39;</span>,<span class="string">&#39;z&#39;</span>]; 
+    <span class="macro">println!</span>(<span class="string">&quot;\t\tARRAYS&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--arrays are on the stack, not in the heap&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--unlike tuples, every element of an array must have the same type.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--Rust arrays have a fixed length (this is diff from other languages).&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--arrays are declared with bracket notation.&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--array of numbers declared as let a: [usize; 3] = [300_000, 140_000, 50_000] &quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--an array&#39;s elements are accessed via indexing =&gt; arrayName[int] =&gt; myArray[0]&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--the first alphabet in &#39;alphabets&#39; is: {}&quot;</span>, <span class="ident">alphabets</span>[<span class="number">0</span>]);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--the first alphabet in &#39;array a&#39; is: {}&quot;</span>, <span class="ident">a</span>[<span class="number">2</span>]);
+    <span class="macro">println!</span>(<span class="string">&quot;\t\t--the first alphabet in &#39;array b&#39; arrary is: {}&quot;</span>, <span class="ident">b</span>[<span class="number">3</span>]); 
+    <span class="ident">new_line</span>();
+}
+</code></pre></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="data_types" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</body></html>
